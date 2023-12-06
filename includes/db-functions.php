@@ -82,17 +82,6 @@ function createApplication($conn, $username, $password, $email, $firstName, $las
     header("location: ../index.php?success=true");
 }
 
-
-
-
-
-
-
-
-
-
-
-// NOT USED 
 function loadCourseLevels($conn){
     $sql = "SELECT * FROM CourseLevel;";
 
@@ -127,4 +116,22 @@ function loadCoursesByLevel($conn, $level){
     mysqli_stmt_close($stmt);
 
     return $result;
+}
+
+function loadCourseById($conn, $id){
+    $sql = "SELECT * FROM Course WHERE id = {$id};";
+
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        echo "Could not load Course Levels";
+        exit();
+    }
+
+    mysqli_stmt_execute($stmt);
+
+    $result = mysqli_stmt_get_result($stmt);
+
+    mysqli_stmt_close($stmt);
+
+    return $result->fetch_assoc();
 }
