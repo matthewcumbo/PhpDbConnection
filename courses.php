@@ -14,6 +14,7 @@
     <div class="row">
         <div class="col-12">
             <h1>Course List</h1>
+            <p>This page shows a list of courses by MCAST</p>
         </div>
     </div>
 </header>
