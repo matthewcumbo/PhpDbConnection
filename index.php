@@ -20,7 +20,7 @@
     </div>
 </header>
 
-<div class="container mt-">
+<div class="container mt-3">
     <form action="includes/registration-inc.php" method="POST">
         <!-- Main Form -->
         <div class="row">
