@@ -20,7 +20,7 @@
     </div>
 </header>
 
-<div class="container mt-3">
+<div class="container mt-">
     <form action="includes/registration-inc.php" method="POST">
         <!-- Main Form -->
         <div class="row">
@@ -88,7 +88,9 @@
                             <?php 
                                 foreach($courses as $row):
                                     ?>
-                                        <option value="<?php echo $row["id"]; ?>"><?php echo $row["title"]; ?></option>
+                                        <option value="<?php echo $row["id"]; ?>">
+                                        <?php echo $row["title"]; ?>
+                                    </option>
                                     <?php
                                 endforeach;
                             ?>

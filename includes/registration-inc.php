@@ -4,8 +4,11 @@ require_once "functions.php";
 require_once "dbh.php";
 require_once "db-functions.php";
 
-// print_r($_POST);
-if(isset($_POST)){
+if(empty($_POST)){
+    header("location: ../index.php");
+    exit();
+}
+else{
     $username = $_POST["username"];
     $password = $_POST["password"];
     $confPassword = $_POST["confPassword"];
@@ -48,8 +51,4 @@ if(isset($_POST)){
     }
 
     createApplication($conn, $username, $password, $email, $firstName, $lastName,$address, $street, $town, $course);
-}
-else {
-    header("location: ../index.php");
-    exit();
 }
