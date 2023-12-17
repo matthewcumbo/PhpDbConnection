@@ -226,3 +226,27 @@ function loadAllApplications($conn){
 
     return $result;
 }
+
+function userExists($conn, $username, $email){
+    $sql = "SELECT username, password FROM application WHERE username = ? OR email = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt,$sql)){
+        header("location: ../signup.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "ss", $username, $email);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+    mysqli_stmt_close($stmt);
+
+    if ($row = mysqli_fetch_assoc($resultData)){
+        return $row;
+    }
+    else
+    {
+        $result = false;
+        return $result;
+    }
+}

@@ -11,7 +11,7 @@ function passwordsMatch($password, $confPassword){
 
 function emptyInputs($inputs){
     foreach($inputs as $input){
-        if(empty($input)){
+        if(empty($input)==true){
             return true;
         }
     }
@@ -35,4 +35,28 @@ function invalidUsername($username){
     }
 
     return $result;
+}
+
+function loginUser($conn, $username, $password){
+    $userExists = userExists($conn, $username, $username);
+
+    if ($userExists === false){
+        header("location: ../login.php?error=incorrectlogin");
+        exit();
+    }
+
+    $hashedPassword = $userExists["password"];
+    $checkPassword = password_verify($password,$hashedPassword);
+
+    if ($checkPassword === false){
+        header("location: ../login.php?error=incorrectlogin");
+        exit();
+    }
+    elseif($checkPassword === true){
+        session_start();
+        $_SESSION["username"] = $userExists["username"];
+
+        header("location: ../applications.php");
+        exit();
+    }
 }

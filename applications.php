@@ -9,12 +9,23 @@
 
     $applications = loadAllApplications($conn);
     // print_r($applications);
+
+    session_start();
+    if(!isset($_SESSION["username"])){
+        header("location:login.php");
+        exit();
+    }
 ?>
 
 <header class="container-fluid bg-light border-bottom border-secondary p-4">
     <div class="row">
-        <div class="col-12">
+        <div class="col-10">
             <h1>Application List</h1>
+        </div>
+        <div class="col-2">
+            <form action="includes/logout-inc.php">
+                <button type="submit" class="btn btn-danger w-100 p-2 fs-5">Logout</button>
+            </form>
         </div>
     </div>
 </header>
