@@ -208,3 +208,21 @@ function updateApplication($conn, $id, $username, $password, $email, $firstName,
     header("location: ../application.php?application={$id}&success=true");
     exit();
 }
+
+function loadAllApplications($conn){
+    $sql = "SELECT * FROM application";
+
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        echo "Could not load Applications";
+        exit();
+    }
+
+    mysqli_stmt_execute($stmt);
+
+    $result = mysqli_stmt_get_result($stmt);
+
+    mysqli_stmt_close($stmt);
+
+    return $result;
+}
