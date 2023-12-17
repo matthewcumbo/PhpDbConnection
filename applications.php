@@ -31,7 +31,7 @@
                             <h5 class="card-title"><?php echo $app["firstName"]." ".$app["lastName"]; ?></h5>
                             <h6 class="card-subtitle mb-2 text-muted"><?php echo $app["email"];?></h6>
                             <span><?php echo $app["applicationDate"];?></span>
-                            <a href="#" class="card-link">Details</a>
+                            <a href="application.php?application=<?php echo $app["id"] ;?>" class="card-link">Details</a>
                         </div>
                     </div>
                 </div>
